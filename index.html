@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
+  
+  <title>Scratch Card Demo</title>
+
+</head>
+<body>
+<!-- Unless explicitly stated all the code in this work is licensed under the permissive MIT license. Paul J Palmer 2017 -->
+<!-- For this to work as a paste in code block we must add a link to jQuery, if this is not available by default   -->
+<!-- Use something like this for Drupal -->
+<!--<script type="text/javascript" src="/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+<!-- This links to the test library instead. Only use one. -->
+  <script type="text/javascript" src="/scratch-off_ryhope/lib/jquery.1.11.0.min.js"></script>
+<!-- Now load the scratch pad javascript. -->
+ <script type="text/javascript" src="/scratch-off_ryhope/src/wScratchPad.js"></script> 
+<!-- End jQuery link -->
+
+	<!-- This sets the box for the images -->
+    	<div class="content-box-delete-this-class-name">
+      	<div id="demo" class="scratchpad"></div>
+      	<div id="demo-percent">&nbsp;</div>
+      	<input type="button" value="Reset" onclick="$('#demo').wScratchPad('reset');"/>
+      	<input type="button" value="Complete" onclick="$('#demo').wScratchPad('clear');"/>
+	<button type="button" onclick="history.back();">Back to Info-Point</button>
+      	<!-- End content box -->
+      <!-- Must use inline styles for a paste in block to work -->
+      <style>
+        .scratchpad{
+          width: 500px;
+          height: 326px;
+          border: solid 1px;
+        }
+
+        @media (max-width: 500px) {
+          .scratchpad {
+            width: 100%;
+          }
+
+        }
+      </style>
+	<!-- End Styles -->
+
+
+ 	<!-- Now call the script. Put it in a function container so we do not break Drupal. -->
+     <script type="text/javascript">
+(function ($) {
+        $('#demo').wScratchPad({
+          bg: '/scratch-off_ryhope/images/bottom.png',
+          fg: '/scratch-off_ryhope/images/top.png',
+           'size' : '50', // sets the size of the scratch          
+          scratchMove: function (e, percent) {
+            //$('#demo-percent').html(percent); //This shows the percent cleared.
+
+            if (percent > 70) {
+              this.clear(); // Reset when this percent is clear.
+            }
+          }
+        });
+// Now the scratchpad code ends
+}(jQuery)); // Close the container
+      </script>
+      
+    </div>
+</body>
+</html>
